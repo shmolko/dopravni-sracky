@@ -278,11 +278,20 @@ function bindSwipe() {
 }
 
 function bindEvents() {
-  elements.startLesson.addEventListener("click", startLesson);
-  elements.showStudyFromSetup.addEventListener("click", () => showView("study"));
-  elements.showStudyFromLesson.addEventListener("click", () => showView("study"));
-  elements.backToSetup.addEventListener("click", () => showView("setup"));
-  elements.backToLesson.addEventListener("click", () => {
+  // This helper keeps button wiring safe even if the layout changes.
+  function addClickListener(element, handler) {
+    if (!element) {
+      return;
+    }
+
+    element.addEventListener("click", handler);
+  }
+
+  addClickListener(elements.startLesson, startLesson);
+  addClickListener(elements.showStudyFromSetup, () => showView("study"));
+  addClickListener(elements.showStudyFromLesson, () => showView("study"));
+  addClickListener(elements.backToSetup, () => showView("setup"));
+  addClickListener(elements.backToLesson, () => {
     if (!state.lessonDeck.length) {
       showToast("Ještě nemáš rozjetou lekci.");
       return;
@@ -290,9 +299,9 @@ function bindEvents() {
 
     showView("lesson");
   });
-  elements.newLesson.addEventListener("click", () => showView("setup"));
-  elements.previousCard.addEventListener("click", () => moveLesson(-1));
-  elements.nextCard.addEventListener("click", () => moveLesson(1));
+  addClickListener(elements.newLesson, () => showView("setup"));
+  addClickListener(elements.previousCard, () => moveLesson(-1));
+  addClickListener(elements.nextCard, () => moveLesson(1));
   bindSwipe();
 }
 
