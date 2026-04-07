@@ -199,6 +199,8 @@ function openSignDialog(sign) {
 function renderStudy() {
   elements.studyGroups.innerHTML = "";
   elements.studyBack.classList.toggle("hidden", !state.activeStudyCategoryId);
+  elements.backToSetup.classList.toggle("hidden", Boolean(state.activeStudyCategoryId));
+  elements.backToLesson.classList.toggle("hidden", Boolean(state.activeStudyCategoryId));
 
   if (!state.activeStudyCategoryId) {
     const categoryList = document.createElement("div");
