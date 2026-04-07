@@ -18,6 +18,7 @@ const elements = {
   startLesson: document.querySelector("#start-lesson"),
   showStudyFromSetup: document.querySelector("#show-study-from-setup"),
   showStudyFromLesson: document.querySelector("#show-study-from-lesson"),
+  backToSetup: document.querySelector("#back-to-setup"),
   backToLesson: document.querySelector("#back-to-lesson"),
   newLesson: document.querySelector("#new-lesson"),
   flashcard: document.querySelector("#flashcard"),
@@ -280,6 +281,7 @@ function bindEvents() {
   elements.startLesson.addEventListener("click", startLesson);
   elements.showStudyFromSetup.addEventListener("click", () => showView("study"));
   elements.showStudyFromLesson.addEventListener("click", () => showView("study"));
+  elements.backToSetup.addEventListener("click", () => showView("setup"));
   elements.backToLesson.addEventListener("click", () => {
     if (!state.lessonDeck.length) {
       showToast("Ještě nemáš rozjetou lekci.");

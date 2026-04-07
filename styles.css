@@ -125,10 +125,13 @@ button {
   margin-bottom: 18px;
 }
 
+.setup-secondary-action {
+  margin-bottom: 20px;
+}
+
 .category-selector {
   display: grid;
   gap: 12px;
-  margin-bottom: 20px;
 }
 
 .category-chip {

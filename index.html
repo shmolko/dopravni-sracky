@@ -15,15 +15,14 @@
 
       <main class="app">
         <section id="setup-view" class="panel">
-          <div class="panel-header">
-            <div></div>
-            <button id="show-study-from-setup" class="ghost-button" type="button">
-              Přehled značek
-            </button>
-          </div>
-
           <div class="setup-start">
             <button id="start-lesson" class="primary-button start-button" type="button">Start!</button>
+          </div>
+
+          <div class="setup-secondary-action">
+            <button id="show-study-from-setup" class="primary-button start-button" type="button">
+              Přehled značek
+            </button>
           </div>
 
           <div id="category-selector" class="category-selector" aria-label="Výběr kategorií"></div>
@@ -60,10 +59,8 @@
 
         <section id="study-view" class="panel hidden">
           <div class="panel-header">
-            <div>
-              <h2>Přehled značek</h2>
-            </div>
             <div class="header-actions">
+              <button id="back-to-setup" class="ghost-button" type="button">Hlavní obrazovka</button>
               <button id="back-to-lesson" class="ghost-button" type="button">Zpět do lekce</button>
             </div>
           </div>
