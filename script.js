@@ -5,6 +5,7 @@ const state = {
   lessonDeck: [],
   currentIndex: 0,
   isFlipped: false,
+  activeStudyCategoryId: null,
   toastTimerId: null,
   swipeStartX: null,
   swipeMoved: false,
@@ -18,6 +19,7 @@ const elements = {
   startLesson: document.querySelector("#start-lesson"),
   showStudyFromSetup: document.querySelector("#show-study-from-setup"),
   showStudyFromLesson: document.querySelector("#show-study-from-lesson"),
+  studyBack: document.querySelector("#study-back"),
   backToSetup: document.querySelector("#back-to-setup"),
   backToLesson: document.querySelector("#back-to-lesson"),
   newLesson: document.querySelector("#new-lesson"),
@@ -77,6 +79,17 @@ function showToast(message) {
   state.toastTimerId = window.setTimeout(() => {
     elements.toast.classList.remove("is-visible");
   }, 1800);
+}
+
+function openStudyOverview() {
+  state.activeStudyCategoryId = null;
+  renderStudy();
+  showView("study");
+}
+
+function openStudyCategory(categoryId) {
+  state.activeStudyCategoryId = categoryId;
+  renderStudy();
 }
 
 function renderCategorySelector() {
@@ -185,41 +198,63 @@ function openSignDialog(sign) {
 
 function renderStudy() {
   elements.studyGroups.innerHTML = "";
+  elements.studyBack.classList.toggle("hidden", !state.activeStudyCategoryId);
 
-  categories.forEach((category) => {
-    const categorySigns = signs
-      .filter((sign) => sign.category === category.id)
-      .sort(sortByCode);
+  if (!state.activeStudyCategoryId) {
+    const categoryList = document.createElement("div");
+    categoryList.className = "study-category-list";
 
-    const group = document.createElement("section");
-    group.className = "study-group";
-    group.innerHTML = `
-      <div>
-        <h3>${category.title}</h3>
-        <p class="study-card-text">${category.description}</p>
-      </div>
-      <div class="study-grid"></div>
-    `;
-
-    const grid = group.querySelector(".study-grid");
-
-    categorySigns.forEach((sign) => {
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = "study-card";
-      card.innerHTML = `
-        <img src="${sign.imageUrl}" alt="${sign.nameCz}" />
-        <p class="card-category">${sign.code}</p>
-        <p class="study-card-title">${sign.nameCz}</p>
-        <p class="study-card-text">${sign.shortMeaning}</p>
+    categories.forEach((category) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "study-category-button";
+      button.innerHTML = `
+        <span class="chip-copy">
+          <span class="chip-title">${category.title}</span>
+          <span class="chip-description">${category.description}</span>
+        </span>
       `;
-
-      card.addEventListener("click", () => openSignDialog(sign));
-      grid.append(card);
+      button.addEventListener("click", () => openStudyCategory(category.id));
+      categoryList.append(button);
     });
 
-    elements.studyGroups.append(group);
+    elements.studyGroups.append(categoryList);
+    return;
+  }
+
+  const activeCategory = getCategoryById(state.activeStudyCategoryId);
+  const categorySigns = signs
+    .filter((sign) => sign.category === state.activeStudyCategoryId)
+    .sort(sortByCode);
+
+  const group = document.createElement("section");
+  group.className = "study-group";
+  group.innerHTML = `
+    <div>
+      <h3>${activeCategory.title}</h3>
+      <p class="study-card-text">${activeCategory.description}</p>
+    </div>
+    <div class="study-grid"></div>
+  `;
+
+  const grid = group.querySelector(".study-grid");
+
+  categorySigns.forEach((sign) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "study-card";
+    card.innerHTML = `
+      <img src="${sign.imageUrl}" alt="${sign.nameCz}" />
+      <p class="card-category">${sign.code}</p>
+      <p class="study-card-title">${sign.nameCz}</p>
+      <p class="study-card-text">${sign.shortMeaning}</p>
+    `;
+
+    card.addEventListener("click", () => openSignDialog(sign));
+    grid.append(card);
   });
+
+  elements.studyGroups.append(group);
 }
 
 function bindSwipe() {
@@ -288,8 +323,9 @@ function bindEvents() {
   }
 
   addClickListener(elements.startLesson, startLesson);
-  addClickListener(elements.showStudyFromSetup, () => showView("study"));
-  addClickListener(elements.showStudyFromLesson, () => showView("study"));
+  addClickListener(elements.showStudyFromSetup, openStudyOverview);
+  addClickListener(elements.showStudyFromLesson, openStudyOverview);
+  addClickListener(elements.studyBack, openStudyOverview);
   addClickListener(elements.backToSetup, () => showView("setup"));
   addClickListener(elements.backToLesson, () => {
     if (!state.lessonDeck.length) {

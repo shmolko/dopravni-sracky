@@ -310,6 +310,32 @@ button {
   gap: 24px;
 }
 
+.study-category-list {
+  display: grid;
+  gap: 12px;
+}
+
+.study-category-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--chip);
+  text-align: left;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.study-category-button:hover {
+  background: var(--accent-soft);
+  border-color: #ffb4a4;
+}
+
+.study-category-button:active {
+  transform: scale(0.98);
+}
+
 .study-group {
   display: grid;
   gap: 14px;
