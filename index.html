@@ -9,7 +9,6 @@
   <body>
     <div class="app-shell">
       <header class="hero">
-        <p class="eyebrow">Mobilní tahák na značky</p>
         <h1>Dopravní sračky</h1>
         <p class="subtitle">Protože rychlost není všechno.</p>
       </header>
@@ -19,31 +18,23 @@
           <div class="panel-header">
             <div>
               <h2>Nastavení lekce</h2>
-              <p>Vyber si kategorie. Ve výchozím stavu jsou zapnuté všechny.</p>
             </div>
             <button id="show-study-from-setup" class="ghost-button" type="button">
               Přehled značek
             </button>
           </div>
 
-          <div id="category-selector" class="category-selector" aria-label="Výběr kategorií"></div>
-
-          <div class="setup-actions">
-            <button id="select-all-categories" class="ghost-button" type="button">
-              Vybrat vše
-            </button>
-            <button id="clear-all-categories" class="ghost-button" type="button">
-              Vyčistit výběr
-            </button>
-            <button id="start-lesson" class="primary-button" type="button">Start!</button>
+          <div class="setup-start">
+            <button id="start-lesson" class="primary-button start-button" type="button">Start!</button>
           </div>
+
+          <div id="category-selector" class="category-selector" aria-label="Výběr kategorií"></div>
         </section>
 
         <section id="lesson-view" class="panel hidden" aria-live="polite">
           <div class="panel-header">
             <div>
               <h2>Lekce</h2>
-              <p id="lesson-meta">Klepni na kartu pro otočení. Táhni doleva nebo doprava pro další značku.</p>
             </div>
             <div class="header-actions">
               <button id="new-lesson" class="ghost-button" type="button">Nová lekce</button>
@@ -56,7 +47,6 @@
               <div class="flashcard-media">
                 <img id="card-image" alt="" />
               </div>
-              <p class="hint">Klepni pro vysvětlení</p>
             </div>
 
             <div class="flashcard-face flashcard-back">
@@ -71,7 +61,6 @@
 
           <div class="lesson-actions">
             <button id="previous-card" class="ghost-button" type="button">Předchozí</button>
-            <button id="flip-card" class="ghost-button" type="button">Otočit</button>
             <button id="next-card" class="primary-button" type="button">Další</button>
           </div>
         </section>

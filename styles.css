@@ -51,14 +51,7 @@ button {
 }
 
 .hero {
-  padding: 12px 8px 24px;
-}
-
-.eyebrow {
-  margin: 0 0 6px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--accent-strong);
+  padding: 8px 8px 18px;
 }
 
 .hero h1 {
@@ -105,11 +98,14 @@ button {
 }
 
 .header-actions,
-.setup-actions,
 .lesson-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.setup-start {
+  margin-bottom: 18px;
 }
 
 .category-selector {
@@ -175,6 +171,13 @@ button {
   background: var(--accent);
   color: white;
   font-weight: 800;
+}
+
+.start-button {
+  width: 100%;
+  min-height: 68px;
+  font-size: 1.3rem;
+  border-radius: 20px;
 }
 
 .primary-button:hover {
@@ -248,13 +251,6 @@ button {
   width: min(100%, 360px);
   max-height: 260px;
   object-fit: contain;
-}
-
-.hint {
-  margin: 0;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.95rem;
 }
 
 .card-text {

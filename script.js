@@ -16,8 +16,6 @@ const elements = {
   studyView: document.querySelector("#study-view"),
   categorySelector: document.querySelector("#category-selector"),
   startLesson: document.querySelector("#start-lesson"),
-  selectAllCategories: document.querySelector("#select-all-categories"),
-  clearAllCategories: document.querySelector("#clear-all-categories"),
   showStudyFromSetup: document.querySelector("#show-study-from-setup"),
   showStudyFromLesson: document.querySelector("#show-study-from-lesson"),
   backToSetup: document.querySelector("#back-to-setup"),
@@ -29,10 +27,8 @@ const elements = {
   cardTitle: document.querySelector("#card-title"),
   cardShort: document.querySelector("#card-short"),
   cardDetails: document.querySelector("#card-details"),
-  lessonMeta: document.querySelector("#lesson-meta"),
   previousCard: document.querySelector("#previous-card"),
   nextCard: document.querySelector("#next-card"),
-  flipCard: document.querySelector("#flip-card"),
   studyGroups: document.querySelector("#study-groups"),
   signDialog: document.querySelector("#sign-dialog"),
   dialogImage: document.querySelector("#dialog-image"),
@@ -131,7 +127,6 @@ function renderLesson() {
   elements.cardTitle.textContent = activeSign.nameCz;
   elements.cardShort.textContent = activeSign.shortMeaning;
   elements.cardDetails.textContent = activeSign.detailsCz;
-  elements.lessonMeta.textContent = `Klepni na kartu pro otočení. Táhni doleva nebo doprava pro další značku. Vybrané kategorie: ${state.selectedCategoryIds.size}.`;
 }
 
 function startLesson() {
@@ -284,14 +279,6 @@ function bindSwipe() {
 
 function bindEvents() {
   elements.startLesson.addEventListener("click", startLesson);
-  elements.selectAllCategories.addEventListener("click", () => {
-    state.selectedCategoryIds = new Set(categories.map((category) => category.id));
-    renderCategorySelector();
-  });
-  elements.clearAllCategories.addEventListener("click", () => {
-    state.selectedCategoryIds = new Set();
-    renderCategorySelector();
-  });
   elements.showStudyFromSetup.addEventListener("click", () => showView("study"));
   elements.showStudyFromLesson.addEventListener("click", () => showView("study"));
   elements.backToSetup.addEventListener("click", () => showView("setup"));
@@ -306,7 +293,6 @@ function bindEvents() {
   elements.newLesson.addEventListener("click", () => showView("setup"));
   elements.previousCard.addEventListener("click", () => moveLesson(-1));
   elements.nextCard.addEventListener("click", () => moveLesson(1));
-  elements.flipCard.addEventListener("click", flipLessonCard);
   bindSwipe();
 }
 
