@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dopravní sračky</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">Mobilní tahák na značky</p>
+        <h1>Dopravní sračky</h1>
+        <p class="subtitle">Protože rychlost není všechno.</p>
+      </header>
+
+      <main class="app">
+        <section id="setup-view" class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Nastavení lekce</h2>
+              <p>Vyber si kategorie. Ve výchozím stavu jsou zapnuté všechny.</p>
+            </div>
+            <button id="show-study-from-setup" class="ghost-button" type="button">
+              Přehled značek
+            </button>
+          </div>
+
+          <div id="category-selector" class="category-selector" aria-label="Výběr kategorií"></div>
+
+          <div class="setup-actions">
+            <button id="select-all-categories" class="ghost-button" type="button">
+              Vybrat vše
+            </button>
+            <button id="clear-all-categories" class="ghost-button" type="button">
+              Vyčistit výběr
+            </button>
+            <button id="start-lesson" class="primary-button" type="button">Start!</button>
+          </div>
+        </section>
+
+        <section id="lesson-view" class="panel hidden" aria-live="polite">
+          <div class="panel-header">
+            <div>
+              <h2>Lekce</h2>
+              <p id="lesson-meta">Klepni na kartu pro otočení. Táhni doleva nebo doprava pro další značku.</p>
+            </div>
+            <div class="header-actions">
+              <button id="new-lesson" class="ghost-button" type="button">Nová lekce</button>
+              <button id="show-study-from-lesson" class="ghost-button" type="button">Přehled</button>
+            </div>
+          </div>
+
+          <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karta dopravní značky">
+            <div class="flashcard-face flashcard-front">
+              <div class="flashcard-media">
+                <img id="card-image" alt="" />
+              </div>
+              <p class="hint">Klepni pro vysvětlení</p>
+            </div>
+
+            <div class="flashcard-face flashcard-back">
+              <div class="card-text">
+                <p id="card-category" class="card-category"></p>
+                <h3 id="card-title"></h3>
+                <p id="card-short" class="card-short"></p>
+                <p id="card-details" class="card-details"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lesson-actions">
+            <button id="previous-card" class="ghost-button" type="button">Předchozí</button>
+            <button id="flip-card" class="ghost-button" type="button">Otočit</button>
+            <button id="next-card" class="primary-button" type="button">Další</button>
+          </div>
+        </section>
+
+        <section id="study-view" class="panel hidden">
+          <div class="panel-header">
+            <div>
+              <h2>Přehled značek</h2>
+              <p>Projdi si všechny zařazené značky podle kategorií a otevři si detail, když chceš víc textu.</p>
+            </div>
+            <div class="header-actions">
+              <button id="back-to-setup" class="ghost-button" type="button">Nastavení lekce</button>
+              <button id="back-to-lesson" class="ghost-button" type="button">Zpět do lekce</button>
+            </div>
+          </div>
+
+          <div id="study-groups" class="study-groups"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="sign-dialog" class="sign-dialog">
+      <form method="dialog" class="dialog-card">
+        <button class="dialog-close" type="submit" aria-label="Zavřít detail">×</button>
+        <div class="dialog-image-wrap">
+          <img id="dialog-image" alt="" />
+        </div>
+        <p id="dialog-category" class="card-category"></p>
+        <h3 id="dialog-title"></h3>
+        <p id="dialog-short" class="card-short"></p>
+        <p id="dialog-details" class="card-details"></p>
+        <a id="dialog-source" class="source-link" href="#" target="_blank" rel="noreferrer">
+          Zdroj obrázku / reference
+        </a>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
