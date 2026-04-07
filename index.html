@@ -16,9 +16,7 @@
       <main class="app">
         <section id="setup-view" class="panel">
           <div class="panel-header">
-            <div>
-              <h2>Nastavení lekce</h2>
-            </div>
+            <div></div>
             <button id="show-study-from-setup" class="ghost-button" type="button">
               Přehled značek
             </button>
@@ -32,14 +30,9 @@
         </section>
 
         <section id="lesson-view" class="panel hidden" aria-live="polite">
-          <div class="panel-header">
-            <div>
-              <h2>Lekce</h2>
-            </div>
-            <div class="header-actions">
-              <button id="new-lesson" class="ghost-button" type="button">Nová lekce</button>
-              <button id="show-study-from-lesson" class="ghost-button" type="button">Přehled</button>
-            </div>
+          <div class="lesson-top-actions">
+            <button id="new-lesson" class="ghost-button" type="button">Nová lekce</button>
+            <button id="show-study-from-lesson" class="ghost-button" type="button">Přehled</button>
           </div>
 
           <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karta dopravní značky">
@@ -69,10 +62,8 @@
           <div class="panel-header">
             <div>
               <h2>Přehled značek</h2>
-              <p>Projdi si všechny zařazené značky podle kategorií a otevři si detail, když chceš víc textu.</p>
             </div>
             <div class="header-actions">
-              <button id="back-to-setup" class="ghost-button" type="button">Nastavení lekce</button>
               <button id="back-to-lesson" class="ghost-button" type="button">Zpět do lekce</button>
             </div>
           </div>

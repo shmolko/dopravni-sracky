@@ -97,11 +97,28 @@ button {
   color: var(--muted);
 }
 
-.header-actions,
-.lesson-actions {
+.header-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.lesson-top-actions,
+.lesson-actions {
+  display: flex;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.lesson-top-actions {
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.lesson-actions {
+  justify-content: space-between;
+  margin-top: 12px;
 }
 
 .setup-start {
@@ -196,7 +213,9 @@ button {
 
 .flashcard {
   position: relative;
-  min-height: 460px;
+  width: min(100%, 560px);
+  min-height: 360px;
+  margin: 0 auto;
   border-radius: 28px;
   border: 1px solid var(--border);
   background: var(--surface-strong);
@@ -213,7 +232,7 @@ button {
   flex-direction: column;
   justify-content: space-between;
   gap: 16px;
-  padding: 22px;
+  padding: 16px;
   backface-visibility: hidden;
   transition: transform 220ms ease;
 }
@@ -249,7 +268,7 @@ button {
 .flashcard-media img,
 .dialog-image-wrap img {
   width: min(100%, 360px);
-  max-height: 260px;
+  max-height: 220px;
   object-fit: contain;
 }
 
@@ -411,6 +430,6 @@ button {
   }
 
   .flashcard {
-    min-height: 520px;
+    min-height: 420px;
   }
 }
